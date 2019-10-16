@@ -22,7 +22,7 @@ def player_choose(player_1)
 end
 
 
-
+play_again = 0
 while play_again == 0
     instructions
     puts "player_one what do you choose: X or O"
@@ -44,7 +44,7 @@ while play_again == 0
       play_again = 1
     end
 
-  end
+end
 
 
   puts "game end"
