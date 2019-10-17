@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 class Player
+  attr_accessor :name , :symbol
 
-  attr_accessor :symbol
+  def name=(name)
+    @name = name
+  end
 
   def symbol=(symbol)
     @symbol = symbol
@@ -11,11 +14,14 @@ class Player
     @symbol
   end
 
+  def name
+    @name
+  end
+
 end
 
 class Board
-
-  $borad = %w[1 2 3 4 5 6 7 8 9]
+  $board = ['1','2','3','4','5','6','7','8','9']
 
   def board
     $board
@@ -30,10 +36,26 @@ class Board
     puts "-----------------------------------------"
   end
 
+  def player_move(player,move,board)
+    if $board[move - 1] != @symbol
+      board[move - 1] = player.symbol
+      $new_board.check_winner($board, player)
+      if $new_board.check_winner($board, player)
+        puts "#{player.name} WINS!"
+      end
+    
+    end
+     $turn_count += 1
+  end
 
 
+
+  def check_winner(board,player)
+
+  end
 
 end
+
 
 class Display
   def instructions
@@ -43,55 +65,81 @@ class Display
   end
 
   def set_data
+    puts "Player 1, What's your name ? "
+    $p1.name = gets.chomp
+    puts "\n"
     puts "Choose your symbol: X or O"
-    $p1.symbol = gets.chomp
-    $p2.symbol = $p1.symbol == 'X' ? 'O':'X'
-    puts "player 1: #{$p1.symbol}"
-    puts "player 2: #{$p2.symbol}"
+    $p1.symbol = gets.chomp.upcase
+    $p2.symbol = $p1.symbol == 'X'   ? 'O' : 'X'
+    puts "#{$p1.name}'s symbol is : #{$p1.symbol}"
+    puts "\n"
+    puts "Player 2, What's you name ? "
+    $p2.name = gets.chomp
+    puts "\n"
+    puts "#{$p2.name}'s symbol is #{$p2.symbol}"
+    puts "\n"
   end
 
   def whos_first
     if $p1.symbol == 'X'
-      puts "player 1 go first"
+      puts "#{$p1.name} go first"
     else
-      puts "player 2 go first"
+      puts "#{$p2.name} go first"
+      $turn_count = 1
     end
-    turn_count = 1
+    puts "\n"
   end
 
   def turn
-
+    puts "Its #{$whos_turn.name}'s turn"
+      puts "Give me a number of available square to hit"
+      target=true
+      j=gets.chomp.to_i
+      while(target==true)
+        if j>0 && j<=9
+          target=false
+          $new_board.player_move($whos_turn, j, $board)
+          $new_board.display_board
+        else
+          puts "Error you need to put on an available place"
+          puts "Give me a number of available square to hit:"
+          j=gets.chomp.to_i
+        end
+      end
   end
-
 
 end
 
-def new_game
+
+def reset_game
   $new_board = Board.new
   new_display = Display.new
+  new_display.instructions
   $p1 = Player.new
   $p2 = Player.new
   new_display.set_data
+  $turn_count = 0
+  $whos_turn = $turn_count % 2 == 0 ? $p1 : $p2
+  new_display.whos_first
+  $new_board.display_board
+
+   while !$new_board.check_winner($board, $whos_turn)
+    $whos_turn = $turn_count % 2 == 0 ? $p1 : $p2
+    new_display.turn
+  end
 end
+
 
 class Game
-  new_game
-
-end
-$new_board=Board.new
-Game.new
-
-def play_again
-  puts "Want to play again? Y / N"
-  play_status = gets.chomp
-  while play_status == "Y"
-    new_game
+  reset_game
+  puts "Another round ? Y / N"
+  answer = gets.chomp.upcase
+  while answer == "Y"
+    reset_game
   end
-  puts "End of the Game "
+
+  puts "THANK YOU FOR PLAYING"
 end
 
 
-
-
-
-
+Game.new
