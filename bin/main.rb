@@ -29,11 +29,11 @@ class Board
 
   def display_board
     puts " #{$board[0]} | #{$board[1]} | #{$board[2]} "
-    puts "-----------------------------------------"
+    puts "-----------"
     puts " #{$board[3]} | #{$board[4]} | #{$board[5]} "
-    puts "-----------------------------------------"
+    puts "-----------"
     puts " #{$board[6]} | #{$board[7]} | #{$board[8]} "
-    puts "-----------------------------------------"
+    puts "-----------"
   end
 
   def player_move(player,move,board)
@@ -43,7 +43,7 @@ class Board
       if $new_board.check_winner($board, player)
         puts "#{player.name} WINS!"
       end
-    
+
     end
      $turn_count += 1
   end
@@ -51,7 +51,7 @@ class Board
 
 
   def check_winner(board,player)
-
+    # In this part we are going to check if the player wins or draw
   end
 
 end
@@ -59,7 +59,7 @@ end
 
 class Display
   def instructions
-    puts "1. Select a symbol  X or O (Must be uppercase)"
+    puts "1. Select a symbol  X or O "
     puts "2. Every turn the players puts the sign X or O on board"
     puts "3. If the player gets 3 consequtive X or O then the player win"
   end
