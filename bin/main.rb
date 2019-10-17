@@ -8,42 +8,25 @@ end
 
 class Player
 
-  @turn_x = true
-  @turn_o = false
-
-  def player_choose(player_1)
-    if player_1 == 'X' or player_1 == 'O'
-      if player_1 == 'X'
-        player_2='O'
-      else
-        player_2='X'
-      end
-      puts "player 1 will be #{player_1} and player 2 will be #{player_2}"
-    else
-      puts "Wrong symbol choosen"
-    end
-  end
-
-  def turns(turn_x)
-    if turn_x == true
-      puts "Turn of X, Please select a place on the board"
-    else
-      puts "Turn of O, Please select a place on the board"
-    end
-  end
-
-  def next_turn(player_1)
-    if turn_x == false
-      turn_x = true
-      turn_o = false
-    else
-      turn_x = false
-      turn_o = true
-    end
+  attr_accessor :symbol
+  def symbol(symbol)
+    @symbol=symbol
   end
 
 
 end
+
+  def board
+
+
+
+
+  end
+
+
+  def moves
+
+  end
 
 
 
