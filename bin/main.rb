@@ -6,28 +6,59 @@ def instructions
   puts "3. If the player gets 3 consequtive X or O then the player win"
 end
 
+class Player
 
+  @turn_x = true
+  @turn_o = false
 
-def player_choose(player_1)
-  if player_1 == 'X' or player_1 == 'O'
-    if player_1 == 'X'
-      player_2='O'
+  def player_choose(player_1)
+    if player_1 == 'X' or player_1 == 'O'
+      if player_1 == 'X'
+        player_2='O'
+      else
+        player_2='X'
+      end
+      puts "player 1 will be #{player_1} and player 2 will be #{player_2}"
     else
-      player_2='X'
+      puts "Wrong symbol choosen"
     end
-    puts "player 1 will be #{player_1} and player 2 will be #{player_2}"
-  else
-    puts "Wrong symbol choosen"
   end
+
+  def turns(turn_x)
+    if turn_x == true
+      puts "Turn of X, Please select a place on the board"
+    else
+      puts "Turn of O, Please select a place on the board"
+    end
+  end
+
+  def next_turn(player_1)
+    if turn_x == false
+      turn_x = true
+      turn_o = false
+    else
+      turn_x = false
+      turn_o = true
+    end
+  end
+
+
 end
 
 
+
+
 play_again = 0
-while play_again == 0
+
+
     instructions
+
     puts "player_one what do you choose: X or O"
     player_1 = gets.chomp
     player_choose(player_1)
+
+    turns(player_1)
+
 
 
 
@@ -44,7 +75,7 @@ while play_again == 0
       play_again = 1
     end
 
-end
+
 
 
   puts "game end"
