@@ -76,6 +76,12 @@ end
 
 class Game
   new_game
+
+end
+$new_board=Board.new
+Game.new
+
+def play_again
   puts "Want to play again? Y / N"
   play_status = gets.chomp
   while play_status == "Y"
@@ -84,4 +90,8 @@ class Game
   puts "End of the Game "
 end
 
-Game.new
+
+
+
+
+
