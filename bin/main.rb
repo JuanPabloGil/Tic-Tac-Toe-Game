@@ -45,13 +45,27 @@ class Board
       end
 
     end
-     $turn_count += 1
+    $turn_count += 1
   end
 
 
 
   def check_winner(board,player)
     # In this part we are going to check if the player wins or draw
+    win_cond = [
+      [1,2,3],[4,5,6],[7,8,9],
+      [1,4,7],[2,5,8],[3,6,9],
+      [1,5,9],[3,5,7]
+    ]
+    win = false
+    win_cond.each {|condition|
+      count = 0
+      condition.each {|position|
+        count +=1 if board[position - 1] == player.symbol
+      }
+      win = true if count == 3
+    }
+    win
   end
 
 end
@@ -92,20 +106,20 @@ class Display
 
   def turn
     puts "Its #{$whos_turn.name}'s turn"
-      puts "Give me a number of available square to hit"
-      target=true
-      j=gets.chomp.to_i
-      while(target==true)
-        if j>0 && j<=9
-          target=false
-          $new_board.player_move($whos_turn, j, $board)
-          $new_board.display_board
-        else
-          puts "Error you need to put on an available place"
-          puts "Give me a number of available square to hit:"
-          j=gets.chomp.to_i
-        end
+    puts "Give me a number of available square to hit"
+    target=true
+    j=gets.chomp.to_i
+    while(target==true)
+      if j>0 && j<=9
+        target=false
+        $new_board.player_move($whos_turn, j, $board)
+        $new_board.display_board
+      else
+        puts "Error you need to put on an available place"
+        puts "Give me a number of available square to hit:"
+        j=gets.chomp.to_i
       end
+    end
   end
 
 end
@@ -123,7 +137,7 @@ def reset_game
   new_display.whos_first
   $new_board.display_board
 
-   while !$new_board.check_winner($board, $whos_turn)
+  while !$new_board.check_winner($board, $whos_turn)
     $whos_turn = $turn_count % 2 == 0 ? $p1 : $p2
     new_display.turn
   end
