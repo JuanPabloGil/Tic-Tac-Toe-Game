@@ -21,7 +21,7 @@ class Player
 end
 
 class Board
-  $board = ['1','2','3','4','5','6','7','8','9']
+  $board = %W[1 2 3 4 5 6 7 8 9]
 
   def board
     $board
@@ -29,11 +29,11 @@ class Board
 
   def display_board
     puts " #{$board[0]} | #{$board[1]} | #{$board[2]} "
-    puts "-----------"
+    puts '-----------'
     puts " #{$board[3]} | #{$board[4]} | #{$board[5]} "
-    puts "-----------"
+    puts '-----------'
     puts " #{$board[6]} | #{$board[7]} | #{$board[8]} "
-    puts "-----------"
+    puts '-----------'
   end
 
   def player_move(player,move,board)
@@ -47,10 +47,6 @@ class Board
     $turn_count += 1
   end
 
-
-
-
-
   def check_winner(board,player)
     # In this part we are going to check if the player wins or draw
     win_cond = [
@@ -58,18 +54,15 @@ class Board
       [1,4,7],[2,5,8],[3,6,9],
       [1,5,9],[3,5,7]
     ]
-
     win = false
     win_cond.each {|condition|
       count = 0
-
       condition.each {|position|
         count +=1 if board[position - 1] == player.symbol
       }
       win = true if count == 3
     }
     win
-
   end
 
 end
@@ -77,23 +70,23 @@ end
 
 class Display
   def instructions
-    puts "1. Select a symbol  X or O "
-    puts "2. Every turn the players puts the sign X or O on board"
-    puts "3. If the player gets 3 consequtive X or O then the player win"
+    puts '1. Select a symbol  X or O '
+    puts '2. Every turn the players puts the sign X or O on board'
+    puts '3. If the player gets 3 consequtive X or O then the player win'
   end
 
   def set_data
-    player_one=''
+    player_one = ''
     puts "Player 1, What's your name ? "
     $p1.name = gets.chomp
     puts "\n"
-    puts "Choose your symbol: X or O"
+    puts 'Choose your symbol: X or O'
     player_one = gets.chomp.upcase
-    while  player_one !="X" && player_one !="O"
-      puts "Error, please choose one of the correct symbols: X or O"
+    while  player_one !='X' && player_one !='O'
+      puts 'Error, please choose one of the correct symbols: X or O'
       player_one = gets.chomp.upcase
     end
-    $p1.symbol=player_one
+    $p1.symbol = player_one
     $p2.symbol = $p1.symbol == 'X'   ? 'O' : 'X'
     puts "#{$p1.name}'s symbol is : #{$p1.symbol}"
     puts "\n"
@@ -119,38 +112,32 @@ class Display
 
     puts "Its #{$whos_turn.name}'s turn"
     puts "Give me a number of available square to hit"
-    target=true
     j = gets.chomp.to_i
-    while $arr.include?(j)==true
-      if $arr.include?(j)
-        puts("Error pick another value in the board")
+    target = true
+
+    while $arr.include?(j)
+        puts('Error pick another value in the board')
         j = gets.chomp.to_i
-      else
-        $arr << (j)
-      end
     end
 
-
-
     ## check the range
-    while(target==true)
+    while(target == true)
       if j > 0 && j <= 9
+        $arr << (j)
         target=false
         $new_board.player_move($whos_turn, j, $board)
         $new_board.display_board
       else
-        puts "Error you need to put on an available place"
-        puts "Give me a number of available square to hit:"
-        j=gets.chomp.to_i
+        puts 'Error you need to put on an available place'
+        puts 'Give me a number of available square to hit:'
+        j = gets.chomp.to_i
       end
     end
   end
-
 end
 
-
 def reset_game
-  $arr=[]
+  $arr = []
   $new_board = Board.new
   new_display = Display.new
   new_display.instructions
@@ -163,10 +150,9 @@ def reset_game
   $new_board.display_board
   count_2 = 1
   while !$new_board.check_winner($board, $whos_turn) or count_2 == 11
-    puts count_2
     count_2 += 1
-    if count_2 >=11
-      puts "its a draw"
+    if count_2 >= 11
+      puts 'Its a draw'
       break
     end
     $whos_turn = $turn_count % 2 == 0 ? $p1 : $p2
@@ -174,13 +160,12 @@ def reset_game
   end
 end
 
-
 class Game
   reset_game
-  puts "Another round ? Y / N"
+  puts 'Another round ? Y / N'
   answer = gets.chomp.upcase
-  while answer == "Y"
-    $board = ['1','2','3','4','5','6','7','8','9']
+  while answer == 'Y'
+    $board = %W[1 2 3 4 5 6 7 8 9]
     reset_game
   end
 
