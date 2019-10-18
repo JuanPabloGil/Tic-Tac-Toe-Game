@@ -79,11 +79,17 @@ class Display
   end
 
   def set_data
+    player_one=''
     puts "Player 1, What's your name ? "
     $p1.name = gets.chomp
     puts "\n"
     puts "Choose your symbol: X or O"
-    $p1.symbol = gets.chomp.upcase
+    player_one = gets.chomp.upcase
+    while  player_one !="X" && player_one !="O"
+      puts "Error, please choose one of the correct symbols: X or O"
+      player_one = gets.chomp.upcase
+    end
+    $p1.symbol=player_one
     $p2.symbol = $p1.symbol == 'X'   ? 'O' : 'X'
     puts "#{$p1.name}'s symbol is : #{$p1.symbol}"
     puts "\n"
@@ -92,6 +98,7 @@ class Display
     puts "\n"
     puts "#{$p2.name}'s symbol is #{$p2.symbol}"
     puts "\n"
+
   end
 
   def whos_first
@@ -109,6 +116,20 @@ class Display
     puts "Give me a number of available square to hit"
     target=true
     j=gets.chomp.to_i
+    turn-player=[]
+    target_2=true
+    while target_2==true
+      turn-player.each do |i|
+        if i==j
+          puts "Error you have to pick another number"
+          j=gets.chomp.to_i
+        else
+          target_2=false
+          turn-player<<j
+        end
+      end
+    end
+
     while(target==true)
       if j>0 && j<=9
         target=false
