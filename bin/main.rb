@@ -121,6 +121,15 @@ class Display
     puts "Give me a number of available square to hit"
     target=true
     j = gets.chomp.to_i
+    while $arr.include?(j)==true
+      if $arr.include?(j)
+        puts("Error pick another value in the board")
+        j = gets.chomp.to_i
+      else
+        $arr << (j)
+      end
+    end
+
 
 
     ## check the range
@@ -141,6 +150,7 @@ end
 
 
 def reset_game
+  $arr=[]
   $new_board = Board.new
   new_display = Display.new
   new_display.instructions
@@ -170,6 +180,7 @@ class Game
   puts "Another round ? Y / N"
   answer = gets.chomp.upcase
   while answer == "Y"
+    $board = ['1','2','3','4','5','6','7','8','9']
     reset_game
   end
 
