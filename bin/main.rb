@@ -67,7 +67,6 @@ class Board
 
 end
 
-
 class Display
   def instructions
     puts '1. Select a symbol  X or O '
