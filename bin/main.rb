@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 class Player
-  attr_accessor :name , :symbol
+  attr_accessor :name, :symbol
 
   def name=(name)
     @name = name
