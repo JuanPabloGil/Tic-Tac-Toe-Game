@@ -10,6 +10,8 @@ RSpec.describe Board do
 
   let(:test_board_new_move) {%w[1 2 3 4 5 6 7 8 X ]}
   let(:test_j) {3}
+  let(:text_x) {"X"}
+  let(:text_o) {"O"}
   let(:test_board) {%w[1 2 3 4 5 6 7 8 9]}
   let(:test_board_win_1) {%w[X X X 4 5 6 7 8 9]}
   let(:test_board_win_2) {%w[1 2 3 X X X 7 8 9]}
@@ -39,112 +41,112 @@ RSpec.describe Board do
   describe "#check_winner" do
     it "check if the combination 1 its a win "do
       board = Board.new
-      expect(board.check_winner(test_board_win_1,$p1,"X")).to eql(true)
+      expect(board.check_winner(test_board_win_1,$p1,text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 2 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_2,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_2,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 3 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_3,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_3,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 4 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_4,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_4,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 5 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_5,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_5,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 6 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_6,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_6,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 7 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_7,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_7,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 8 its a Win for the X's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_8,$p1, "X")).to eql(true)
+      expect(board.check_winner(test_board_win_8,$p1, text_x)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 1 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_1_o,$p2, "O")).to eql(true)
+      expect(board.check_winner(test_board_win_1_o,$p2, text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 2 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_2_o,$p2, "O")).to eql(true)
+      expect(board.check_winner(test_board_win_2_o,$p2, text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 3 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_3_o,$p2, "O")).to eql(true)
+      expect(board.check_winner(test_board_win_3_o,$p2, text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 4 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_4_o,$p2, "O")).to eql(true)
+      expect(board.check_winner(test_board_win_4_o,$p2, text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 5 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_5_o,$p2, "O")).to eql(true)
+      expect(board.check_winner(test_board_win_5_o,$p2, text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 6 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_6_o,$p2, "O")).to eql(true)
+      expect(board.check_winner(test_board_win_6_o,$p2, text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 7 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_7_o,$p2,"O")).to eql(true)
+      expect(board.check_winner(test_board_win_7_o,$p2,text_o)).to eql(true)
     end
   end
 
   describe "#check_winner" do
     it "check if the combination 8 for the O's its a Win for the O's "do
       board = Board.new
-      expect(board.check_winner(test_board_win_8_o,$p2,"O")).to eql(true)
+      expect(board.check_winner(test_board_win_8_o,$p2,text_o)).to eql(true)
     end
   end
 
@@ -163,8 +165,10 @@ RSpec.describe Board do
 
   describe "#player_move" do
     it "Check if the player move is equal to nill" do
-      board = Board.new
-      expect(board.player_move($p1, test_j, test_board,"X") ).not_to eql(nil)
+      board = Board.new()
+      Board.new()
+
+      expect(board.player_move($p1, test_j, test_board,"X") ).to eql(nil)
     end
   end
 

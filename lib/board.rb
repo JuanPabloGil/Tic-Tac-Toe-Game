@@ -17,7 +17,6 @@ class Board
   def player_move(player, move, board, player_symbol=player.symbol)
     if $board[move - 1] != @symbol
       board[move - 1] = player_symbol
-      $new_board.check_winner($board, player, player_symbol)
         if $new_board.check_winner($board, player, player_symbol)
           puts "#{player.name} WINS!"
         end

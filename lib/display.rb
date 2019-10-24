@@ -28,8 +28,8 @@ class Display
 
   end
 
-  def whos_first
-    if $p1.symbol == 'X'
+  def whos_first(test_1=($p1.symbol))
+    if test_1 == 'X'
       puts "#{$p1.name} go first"
     else
       puts "#{$p2.name} go first"
