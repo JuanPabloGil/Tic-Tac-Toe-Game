@@ -39,7 +39,6 @@ class Display
   end
 
   def turn
-
     puts "Its #{$whos_turn.name}'s turn"
     puts "Give me a number of available square to hit"
     j = gets.chomp.to_i
@@ -49,7 +48,6 @@ class Display
         puts('Error pick another value in the board')
         j = gets.chomp.to_i
     end
-
     ## check the range
     while(target == true)
       if j > 0 && j <= 9
