@@ -163,13 +163,4 @@ RSpec.describe Board do
     end
   end
 
-  describe "#player_move" do
-    it "Check if the player move is equal to nill" do
-      board = Board.new()
-      Board.new()
-
-      expect(board.player_move($p1, test_j, test_board,"X") ).to eql(nil)
-    end
-  end
-
 end

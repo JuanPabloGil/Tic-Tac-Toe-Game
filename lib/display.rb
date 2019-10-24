@@ -28,11 +28,11 @@ class Display
 
   end
 
-  def whos_first(test_1=($p1.symbol))
+  def whos_first(test_1=($p1.symbol), player_one=$p1.name, player_two=$p2.name)
     if test_1 == 'X'
-      puts "#{$p1.name} go first"
+      puts "#{player_one} go first"
     else
-      puts "#{$p2.name} go first"
+      puts "#{player_two} go first"
       $turn_count = 1
     end
     puts "\n"
