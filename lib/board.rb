@@ -14,11 +14,11 @@ class Board
     puts '-----------'
   end
 
-  def player_move(player,move,board)
+  def player_move(player, move, board, player_symbol=player.symbol)
     if $board[move - 1] != @symbol
-      board[move - 1] = player.symbol
-      $new_board.check_winner($board, player, player.symbol)
-        if $new_board.check_winner($board, player, player.symbol)
+      board[move - 1] = player_symbol
+      $new_board.check_winner($board, player, player_symbol)
+        if $new_board.check_winner($board, player, player_symbol)
           puts "#{player.name} WINS!"
         end
     end
@@ -26,7 +26,7 @@ class Board
   end
 
   def check_winner(board,player,player_symbol=player.symbol)
-  
+
     # In this part we are going to check if the player wins or draw
     win_cond = [
       [1,2,3],[4,5,6],[7,8,9],

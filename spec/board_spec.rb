@@ -7,6 +7,9 @@ require_relative '../lib/display'
 
 
 RSpec.describe Board do
+
+  let(:test_board_new_move) {%w[1 2 3 4 5 6 7 8 X ]}
+  let(:test_j) {3}
   let(:test_board) {%w[1 2 3 4 5 6 7 8 9]}
   let(:test_board_win_1) {%w[X X X 4 5 6 7 8 9]}
   let(:test_board_win_2) {%w[1 2 3 X X X 7 8 9]}
@@ -158,5 +161,11 @@ RSpec.describe Board do
     end
   end
 
+  describe "#player_move" do
+    it "Check if the player move is equal to nill" do
+      board = Board.new
+      expect(board.player_move($p1, test_j, test_board,"X") ).not_to eql(nil)
+    end
+  end
 
 end
